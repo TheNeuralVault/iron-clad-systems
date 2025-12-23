@@ -1,103 +1,140 @@
-/* IRON CLAD // EXECUTIVE PROTOCOL */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap');
 
 :root {
-    --bg-deep: #0f172a;       /* Deep Navy/Slate */
-    --card-surface: #1e293b;  /* Lighter Slate */
-    --text-primary: #f8fafc;  /* Platinum White */
-    --text-muted: #94a3b8;    /* Steel Grey */
-    --accent-gold: #c6a87c;   /* Muted Champagne Gold */
-    --border-subtle: rgba(255,255,255,0.05);
+    --bg-deep: #0b0f19;       /* Darker Void */
+    --card-surface: #161b22;  /* Matte Steel */
+    --text-primary: #e2e8f0;
+    --text-muted: #64748b;
+    
+    /* MATTER STATE COLORS */
+    --solid-gold: #d4af37;
+    --liquid-blue: #38bdf8;
+    --gas-white: #f8fafc;
 }
 
 body {
     background-color: var(--bg-deep);
     color: var(--text-primary);
-    font-family: 'Inter', sans-serif; /* Clean, Modern Sans */
+    font-family: 'Inter', sans-serif;
     margin: 0;
-    padding: 0;
     line-height: 1.6;
 }
 
-/* THE HEADER // AUTHORITY */
 header {
-    padding: 4rem 2rem;
+    padding: 6rem 2rem 4rem;
     text-align: center;
-    border-bottom: 1px solid var(--border-subtle);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
 }
 
 h1 {
-    font-family: 'Playfair Display', serif; /* Editorial Authority */
-    font-size: 3.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    line-height: 1.1;
     margin: 0;
-    letter-spacing: -0.02em;
-    background: linear-gradient(to right, #fff, #cbd5e1);
+    letter-spacing: -0.03em;
+    background: linear-gradient(to bottom, #fff, #94a3b8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.subtitle {
-    color: var(--accent-gold);
-    font-size: 0.9rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-top: 1rem;
-    font-weight: 600;
+.manifesto {
+    max-width: 600px;
+    margin: 2rem auto 0;
+    color: var(--text-muted);
+    font-size: 1.1rem;
 }
 
-/* THE GRID // STRUCTURE */
 .container {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 4rem 2rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
 }
 
-/* THE CARD // ASSET */
 .card {
     background: var(--card-surface);
-    border: 1px solid var(--border-subtle);
-    padding: 2.5rem;
-    border-radius: 4px; /* Sharp, professional corners */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 3rem 2rem;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    border-color: var(--accent-gold);
+    border-color: rgba(255,255,255,0.1);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
 }
 
-.card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    margin-top: 0;
-    color: var(--text-primary);
-}
-
-.card p {
+.icon-box {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
     color: var(--text-muted);
-    font-size: 0.95rem;
 }
 
 .status-indicator {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border: 1px solid var(--accent-gold);
-    color: var(--accent-gold);
     font-size: 0.7rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 1.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
 }
 
-/* FOOTER // DISCRETION */
+/* STATE SPECIFIC STYLING */
+.solid-state .status-indicator { color: var(--solid-gold); }
+.liquid-state .status-indicator { color: var(--liquid-blue); }
+.gas-state .status-indicator { color: var(--gas-white); }
+
+.card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.promise {
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.btn {
+    background: transparent;
+    border: 1px solid var(--text-muted);
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    width: 100%;
+    margin-top: 2rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: var(--text-primary);
+    color: var(--bg-deep);
+    border-color: var(--text-primary);
+}
+
 footer {
     text-align: center;
-    padding: 3rem;
+    padding: 4rem;
     color: var(--text-muted);
     font-size: 0.8rem;
-    border-top: 1px solid var(--border-subtle);
+    border-top: 1px solid rgba(255,255,255,0.05);
 }
