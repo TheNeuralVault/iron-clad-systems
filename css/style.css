@@ -1,140 +1,158 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap');
+/* IRON CLAD // OPERATING THEATRE PROTOCOL */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@400;600&display=swap');
 
 :root {
-    --bg-deep: #0b0f19;       /* Darker Void */
-    --card-surface: #161b22;  /* Matte Steel */
-    --text-primary: #e2e8f0;
-    --text-muted: #64748b;
+    /* THE CLINICAL PALETTE */
+    --bg-void: #050505;       /* Absolute Zero */
+    --bg-panel: #0a0a0a;      /* Matte Instrument Panel */
+    --border-steel: #333333;  /* Surgical Steel Border */
+    --text-primary: #e5e5e5;  /* High Contrast Data */
+    --text-dim: #525252;      /* Inactive Data */
     
-    /* MATTER STATE COLORS */
-    --solid-gold: #d4af37;
-    --liquid-blue: #38bdf8;
-    --gas-white: #f8fafc;
+    /* INDICATORS */
+    --signal-success: #00ff9d; /* Vitals Good */
+    --signal-alert: #ff3333;   /* Critical */
+    --signal-cold: #ffffff;    /* Sterile Light */
 }
+
+* { box-sizing: border-box; }
 
 body {
-    background-color: var(--bg-deep);
+    background-color: var(--bg-void);
     color: var(--text-primary);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif; /* Clean Sans for body */
     margin: 0;
-    line-height: 1.6;
+    font-size: 14px;
+    letter-spacing: -0.01em;
 }
 
+/* UTILITY: MONOSPACE DATA */
+.mono {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* HEADER // HUD */
 header {
-    padding: 6rem 2rem 4rem;
-    text-align: center;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid var(--border-steel);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
-.subtitle {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-}
-
-h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem;
-    line-height: 1.1;
-    margin: 0;
-    letter-spacing: -0.03em;
-    background: linear-gradient(to bottom, #fff, #94a3b8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.manifesto {
-    max-width: 600px;
-    margin: 2rem auto 0;
-    color: var(--text-muted);
-    font-size: 1.1rem;
-}
-
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 4rem 2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-}
-
-.card {
-    background: var(--card-surface);
-    border: 1px solid rgba(255,255,255,0.05);
-    padding: 3rem 2rem;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(255,255,255,0.1);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-}
-
-.icon-box {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--text-muted);
-}
-
-.status-indicator {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 0.5rem;
+.system-id h1 {
+    font-size: 1.2rem;
     font-weight: 600;
-}
-
-/* STATE SPECIFIC STYLING */
-.solid-state .status-indicator { color: var(--solid-gold); }
-.liquid-state .status-indicator { color: var(--liquid-blue); }
-.gas-state .status-indicator { color: var(--gas-white); }
-
-.card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
     margin: 0;
+    letter-spacing: 0.2em;
+}
+
+.system-status {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-align: right;
+}
+
+.blink { animation: blinker 2s linear infinite; }
+@keyframes blinker { 50% { opacity: 0; } }
+
+/* HERO // THE DIAGNOSIS */
+.hero {
+    padding: 6rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    border-left: 1px solid var(--border-steel);
+    margin-top: 4rem;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    line-height: 1.1;
+    font-weight: 400;
+    margin: 0 0 2rem 0;
     color: var(--text-primary);
 }
 
-.promise {
+.hero p {
+    color: var(--text-dim);
+    font-size: 1.1rem;
+    max-width: 500px;
+}
+
+/* GRID // THE INSTRUMENT TRAY */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Rigid 3-column */
+    border-top: 1px solid var(--border-steel);
+    border-bottom: 1px solid var(--border-steel);
+    margin-top: 6rem;
+}
+
+@media (max-width: 768px) {
+    .grid-container { grid-template-columns: 1fr; }
+}
+
+.module {
+    border-right: 1px solid var(--border-steel);
+    padding: 3rem 2rem;
+    position: relative;
+    transition: background 0.2s;
+}
+
+.module:last-child { border-right: none; }
+.module:hover { background: #0f0f0f; }
+
+.module-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid var(--border-steel);
+    padding-bottom: 1rem;
+}
+
+.tier-badge {
+    font-size: 0.7rem;
+    border: 1px solid var(--text-dim);
+    padding: 2px 6px;
+    color: var(--text-dim);
+}
+
+.module h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 1rem 0;
+}
+
+.module p {
+    color: var(--text-dim);
     font-size: 0.9rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
+    line-height: 1.5;
 }
 
-.btn {
-    background: transparent;
-    border: 1px solid var(--text-muted);
-    color: var(--text-primary);
-    padding: 1rem 2rem;
-    width: 100%;
+/* BUTTONS // SCALPEL SHARP */
+.btn-action {
+    display: inline-block;
     margin-top: 2rem;
-    cursor: pointer;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    transition: 0.3s;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--signal-success);
+    padding-bottom: 2px;
 }
 
-.btn:hover {
-    background: var(--text-primary);
-    color: var(--bg-deep);
-    border-color: var(--text-primary);
+.btn-action:hover {
+    color: var(--signal-success);
 }
 
 footer {
-    text-align: center;
-    padding: 4rem;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 2rem;
+    border-top: 1px solid var(--border-steel);
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-dim);
+    font-size: 0.75rem;
 }
